@@ -54,6 +54,12 @@ import 'package:riverpod_learning/user_repository.dart';
 ///   -> Avoid memory leak in app whenever provider not used anymore
 ///   -> Better use for provider only by event like Stream Subcription etc.
 
+/// Screen
+/// 1. ConsumerWidget
+///   -> Alternatively for StatelessWidget
+/// 2. ConsumerStateWidget
+///   -> Alternatively for StatefulWidget
+
 /// AsyncValue
 ///   -> Better version / Replacement of AsyncSnapshot
 ///   -> Problem with AsyncSnapshot:
