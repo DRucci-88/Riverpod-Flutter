@@ -6,6 +6,7 @@ import 'package:riverpod_learning/future_screen.dart';
 import 'package:riverpod_learning/data/user.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_learning/data/user_future.dart';
+import 'package:riverpod_learning/user_repository.dart';
 
 /// Providers
 /// Provider
@@ -32,6 +33,10 @@ import 'package:riverpod_learning/data/user_future.dart';
 ///   -> Better version / Replacement of AsyncSnapshot
 ///   -> Problem with AsyncSnapshot:
 ///     -> snapshot.data, snapshot.error they are not interconnected with each other
+/// WidgetRef
+///   -> Allow us talk from widget to provider
+/// ProfiderRef
+///   -> Allow us talk from provide to another provider
 
 final nameProvider = Provider<String>((ref) {
   return "rucci";
@@ -50,20 +55,12 @@ final userChangeNotifierProvider = ChangeNotifierProvider((ref) {
   return UserNotifierProvider();
 });
 
-final fetchUserProvider = FutureProvider((ref) {
-  const uri = 'https://jsonplaceholder.typicode.com/users/1';
-  return Dio().get(uri).then((value) {
-    print(value);
-    return UserFuture.fromMap(value.data);
-  });
+final fetchUserProvider = FutureProvider<UserFuture>((ref) {
+  return ref.watch(userRepositoryProvider).fetchUserData();
 });
 
-final fetchListUserProvider = FutureProvider((ref) {
-  const uri = 'https://jsonplaceholder.typicode.com/users';
-  return Dio().get(uri).then((value) {
-    print(value);
-    return (value.data as List).map((e) => UserFuture.fromMap(e)).toList();
-  });
+final fetchListUserProvider = FutureProvider<List<UserFuture>>((ref) {
+  return ref.watch(userRepositoryProvider).fetctUserListData();
 });
 
 void main() {
