@@ -20,4 +20,12 @@ class UserRepository {
       return (value.data as List).map((e) => UserFuture.fromMap(e)).toList();
     });
   }
+
+  Future<UserFuture> fetchUserDataPagination(String userNo) {
+    String uri = 'https://jsonplaceholder.typicode.com/users/$userNo';
+    return Dio().get(uri).then((value) {
+      print(value);
+      return UserFuture.fromMap(value.data);
+    });
+  }
 }
