@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_learning/main.dart';
 
-class HomeScreen1 extends StatelessWidget {
-  const HomeScreen1({super.key});
+class ProviderScreen1 extends StatelessWidget {
+  const ProviderScreen1({super.key});
 
   @override
   Widget build(BuildContext context) {

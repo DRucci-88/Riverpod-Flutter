@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_learning/main.dart';
-import 'package:riverpod_learning/user.dart';
+import 'package:riverpod_learning/data/user.dart';
 
-class HomeScreen extends ConsumerWidget {
-  const HomeScreen({super.key});
+class ProviderScreen extends ConsumerWidget {
+  const ProviderScreen({super.key});
 
   Widget sb() => const SizedBox(height: 10);
 
@@ -30,7 +30,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ///
+    /// Watch every change inside its provider and trigger rebuild UI
     final String name = ref.watch(nameProvider);
 
     /// Read-Only
@@ -56,6 +56,7 @@ class HomeScreen extends ConsumerWidget {
       body: Center(
         child: Column(
           children: [
+            sb(),
             Text(name),
             sb(),
             TextField(
